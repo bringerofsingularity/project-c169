@@ -1,0 +1,22 @@
+def on_press(key):
+    global current_index, correct, increcct, snetence
+    if key == Key.shift:
+        pass
+    else:
+        if key == Key.backspace and current_index > 0:
+            current_index -= 1
+        elif key == Key.backspace:
+            pass
+        elif str(key).replace("'", "") == sentence[current_index] or (key == Key.space and sentence[current_index] == " "):
+            correct += 1
+            current_index += 1
+        else:
+            incorrect += 1
+            current_index += 1
+
+def on_release(key):
+    global current_index, sentence, start_time, correct, incorrect
+    if current_index >= len(sentence):
+        total_time = datetime.datetime.now() - start_time
+        print(f"Total time taken is {total_time} and with an accuracy of {accuracy}%")
+        return
